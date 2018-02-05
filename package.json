@@ -1,0 +1,26 @@
+{
+  "name": "auth0bootcamp",
+  "version": "1.0.0",
+  "description": "Auth0 Bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvelezpo/Auth0Bootcamp.git"
+  },
+  "keywords": [
+    "scalability"
+  ],
+  "author": "jvelezpo,Saetabis1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvelezpo/Auth0Bootcamp/issues"
+  },
+  "homepage": "https://github.com/jvelezpo/Auth0Bootcamp#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mocha": "^5.0.0"
+  }
+}
