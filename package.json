@@ -4,7 +4,7 @@
   "description": "Auth0 Bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
