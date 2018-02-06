@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-var bcrypt = require('bcrypt');
-var owasp = require('owasp-password-strength-test');
+const bcrypt = require('bcrypt');
+const owasp = require('owasp-password-strength-test');
+const generator = require('generate-password');
 
 const saltRounds = 10;
 
@@ -59,6 +60,23 @@ app.get('/comparePassAndHash', (req, res) => {
   } else {
     res.json({success: bcrypt.compareSync(req.query.password, req.query.hash)});
   }
+});
+
+/**
+ * Compare if a password and a hash belong to each other
+ * @param '/comparePassAndHash'
+ * @param  req, res
+ * @return JSON object
+ */
+app.get('/generateRandom', (req, res) => {
+  const password = generator.generate({
+    length: Math.floor(Math.random() * 128) + 10,
+    numbers: true,
+    symbols: true,
+    uppercase: true,
+    strict: true
+  });
+  res.json({password});
 });
 
 app.listen(8000, () => console.log('Example app listening on port 8000!'));
