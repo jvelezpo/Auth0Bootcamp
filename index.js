@@ -4,9 +4,6 @@ var bcrypt = require('bcrypt');
 var owasp = require('owasp-password-strength-test');
 
 const saltRounds = 10;
-const minLength = 8;
-const maxLenght = 128;
-
 
 app.get('/', (req, res) => {
   res.json({hello: 'World!'});
