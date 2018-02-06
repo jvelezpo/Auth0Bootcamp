@@ -1,3 +1,5 @@
+
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var app = require('../index');
@@ -7,6 +9,23 @@ var expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('App', function() {
+  describe('/generateRandom', function(){
+    it('should return password with all properties', function(done){
+      chai.request(app)
+      .get('/generateRandom')
+      .end((err,res) => {
+      expect(err).to.be.null;
+      chai.request(app)
+      .get(`/checkStrenght?password=${res.body.password}`)
+      .end((err2,res2) => {
+          expect(err).to.be.null;
+        expect(res).to.have.status(200)
+      })
+    });
+    done();
+  });
+});
+ 
   describe('/checkStrenght', function() {
     it('should fail on not having uppercase letter', function(done) {
       chai.request(app)
