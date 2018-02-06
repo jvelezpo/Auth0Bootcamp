@@ -4,11 +4,11 @@
   "description": "Auth0 Bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "test:landing": "mocha --reporter landing",
-    "test:nyan": "mocha --reporter nyan",
-    "test:list": "mocha --reporter list",
-    "test:progress": "mocha --reporter progress",
+    "test": "mocha  --exit",
+    "test:landing": "mocha --exit --reporter landing",
+    "test:nyan": "mocha --exit --reporter nyan",
+    "test:list": "mocha --exit --reporter list",
+    "test:progress": "mocha --exit --reporter progress",
     "start": "node index"
   },
   "repository": {
