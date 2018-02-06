@@ -29,9 +29,8 @@ app.get('/checkStrenght', (req, res) => {
       minPhraseLength        : 20,
       minOptionalTestsToPass : 4,
     });
-    owasp.test(req.query.password, function(err, validation) {
-      res.json({validation});
-    });
+    
+    res.send(owasp.test(req.query.password));
   }
 });
 
