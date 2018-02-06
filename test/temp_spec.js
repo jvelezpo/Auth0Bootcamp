@@ -7,6 +7,21 @@ var expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('App', function() {
+  describe('/checkStrenght', function() {
+    it('should return not strenght enough', function() {
+      chai.request(app)
+      .get('/checkStrenght?password=123')
+      .end((err,res) => {
+        expect(res).to.have.status(200);
+        expect('Content-Type', /json/);
+        body.should.include("Password is not strenght enough");
+      })
+    });
+
+
+  });
+
+
   describe('/encrypt', function() {
     it('responds with status 200', function(done) {
       chai.request(app)

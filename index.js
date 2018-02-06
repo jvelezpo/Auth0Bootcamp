@@ -1,11 +1,38 @@
 const express = require('express');
 const app = express();
 var bcrypt = require('bcrypt');
+var owasp = require('owasp-password-strength-test');
 
 const saltRounds = 10;
+const minLength = 8;
+const maxLenght = 128;
+
 
 app.get('/', (req, res) => {
   res.json({hello: 'World!'});
+});
+
+/**
+ * Checks if a password is strong enough
+ * @param '/checkStrenght'
+ * @param  req, res
+ * @return JSON object
+ */
+app.get('/checkStrenght', (req, res) => {
+  if (!req.query.password) {
+    res.json({error: 'There is no password query!'});
+  } else {
+    owasp.config({
+      allowPassphrases       : true,
+      maxLength              : 128,
+      minLength              : 8,
+      minPhraseLength        : 20,
+      minOptionalTestsToPass : 4,
+    });
+    owasp.test(req.query.password, function(err, validation) {
+      res.json({validation});
+    });
+  }
 });
 
 /**
