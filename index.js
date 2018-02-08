@@ -3,6 +3,7 @@ const app = express();
 const bcrypt = require('bcrypt');
 const owasp = require('owasp-password-strength-test');
 const generator = require('generate-password');
+const os = require('os');
 
 const saltRounds = 10;
 
@@ -77,6 +78,23 @@ app.get('/generateRandom', (req, res) => {
     strict: true
   });
   res.json({password});
+});
+
+app.get('/health', (req, res) => {
+  const ifaces = os.networkInterfaces();
+  let address;
+
+  Object.keys(ifaces).forEach(dev => {
+    ifaces[dev].filter(details => {
+      if (details.family === 'IPv4' && details.internal === false) {
+        address = details.address;
+      }
+    });
+  });
+  res.json({
+    status: 'working',
+    ip: address
+  })
 });
 
 app.listen(8000, () => console.log('Example app listening on port 8000!'));
